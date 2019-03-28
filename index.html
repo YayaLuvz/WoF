@@ -2,12 +2,16 @@
 <html>
   <head>
     <title>WoF</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="WoFstyle.css">
   </head>
   <body>
     <div id='game'>
+      <img src="imgs/blankboard.png" alt="The game board" class="center">
       <div id= 'profile'>
-        <div class= 'opponent-score' id= 'oppo_1'><!--display an object property with the name : score--></div>
-        <div class= 'opponent-score' id= 'oppo_2'><!----></div>
+        <div class= 'opponent-score' id= 'oppo_1'style="flex-grow: 1"><i class="fa fa-heart fa-5x you-circle-icon"></i>
+        <p>Your Score:</p><!--object property with name and score--></div>
+        <div class= 'opponent-score' id= 'oppo_2'><!--  --></div>
         <div class= 'player-score'><!----> </div>
       </div>
       <div class= 'game-play'>
