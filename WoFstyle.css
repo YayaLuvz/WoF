@@ -3,19 +3,40 @@
   flex-flow: row;
   width: auto;
 }
+.flex-item0 {
+  width: 150px;
+  height: 400px;
+}
 .flex-item1 {
   width: 800px;
   height: 400px;
 }
 .flex-item2 {
-  width: 800px;
+  width: 400px;
   height: 400px;
 }
 .center {
-  display: block;
-  margin-left: 30;
-  margin-right: auto;
-  width: 100%;
+  position: absolute;
+  left: 10px;
+  top: 150px;
+  z-index: -1;
+}
+.banner-clue {
+  position: absolute;
+  left: 100px;
+  top: 450px;
+  text-align: center;
+  z-index: 0;
+  opacity: 0.9
+}
+.banner-text {
+  position: absolute;
+  font-size: 50px;
+  color: white;
+  left: 200px;
+  top: 475px;
+  z-index: 1;
+  opacity: 1
 }
 .op1-circle-icon {
   background: #ffc0c0;
@@ -30,5 +51,13 @@
 .you-circle-icon {
   background: #c0ffc0;
   padding:20px;
+  border-radius: 50%;
+}
+.play-button {
+  position: relative;
+  left: 200px;
+  background-color: #008CBA;
+  font-size: 24px;
+  padding: 32px 16px;
   border-radius: 50%;
 }
