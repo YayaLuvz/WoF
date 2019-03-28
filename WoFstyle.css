@@ -1,9 +1,6 @@
-* {
-  box-sizing: border-box;
-}
 .column {
   float: left;
-  width: 33.33%;
+  width: 15%;
   padding: 5px;
   text-align: center;
 }
@@ -13,6 +10,16 @@
   content: "";
   clear: both;
   display: table;
+}
+.flex-container {
+  display: flex;
+  flex-flow: column wrap;
+}
+.center {
+  display: block;
+  margin-left: 30
+  margin-right: auto;
+  width: 60%;
 }
 .op1-circle-icon {
   background: #ffc0c0;

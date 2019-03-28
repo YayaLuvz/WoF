@@ -6,30 +6,32 @@
     <link rel="stylesheet" type="text/css" href="WoFstyle.css">
   </head>
   <body>
-    <div>
-      <h1>Let's Play!</h1>
-      <p>Guess the phrases before your opponents and win</p>
-    </div>
     <div class="row">
+      <img src="imgs/blankboard.png" alt="The game board" class="center">
       <div class="column">
-        <i class='fas fa-bacon fa-3x op2-circle-icon'></i>
-        <p>Opponent</p>
+        <img src="http://www.wheeloffortune.com/Content/Img/Images/global/header/wheel_share.jpg" alt="Wheel of Fortune Icon" width="100">
+        <p>Guess the phrases before your opponents to win!</p>
       </div>
       <div class="column">
-        <i class="fa fa-heart fa-5x you-circle-icon"></i>
-        <p>Your Score:</p>
+
       </div>
       <div class="column">
-        <i class='fas fa-apple-alt fa-3x op1-circle-icon'></i>
-        <p>Opponent</p>
+
+      </div>
+      <div class="column">
+
       </div>
     </div>
-    <img src="imgs/blankboard.png" alt="The game board" width="700">
-
-  <button type="button" onclick="alert('Pay $250 for every revealed vowel. If there are none of your selected vowel, you lose $250.')">Buy a Vowel</button>
-
-  <button type="button" onclick="alert('Hello world!')">Spin</button>
-
-  <button type="button" onclick="alert('Do you know the answer?')">Solve!</button>
+    <div class="flex-container">
+      <div style="flex-grow: 1"><i class="fa fa-heart fa-5x you-circle-icon"></i>
+      <p>Your Score:</p></div>
+      <div style="flex-grow: 1"><i class='fas fa-apple-alt fa-3x op1-circle-icon'></i>
+      <p>Opponent</p></div>
+      <div style="flex-grow: 3"><i class='fas fa-bacon fa-3x op2-circle-icon'></i>
+      <p>Opponent</p></div>
+    </div>
+    <button type="button" onclick="alert('Pay $250 for every revealed vowel. If there are none of your selected vowel, you lose $250.')">Buy a Vowel</button>
+    <button type="button" onclick="alert('Hello world!')">Spin</button>
+    <button type="button" onclick="alert('Do you know the answer?')">Solve!</button>
   </body>
 </html>
