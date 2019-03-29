@@ -1,12 +1,12 @@
 #letter_board {
-    background-color: #43759f;
+    /*background-color: #43759f;*/
     position: relative;
-    top: 100px;
+    top: 63px;
     left: 25px;
     padding: 1em 2em;
     text-align: center;
-    border-radius: 40px;
-    border: 4px double #fff;
+    /*border-radius: 40px;
+    border: 4px double #fff;*/
 }
 #letter_board div.word {
     display: inline-block;
