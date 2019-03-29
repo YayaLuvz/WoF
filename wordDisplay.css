@@ -1,0 +1,33 @@
+/* #letter_board {
+    background-color: #43759f;
+    padding: 1em 2em;
+    text-align: center;
+    border-radius: 40px;
+    border: 4px double #fff;
+} */
+#letter_board div.word {
+    display: inline-block;
+}
+#letter_board div.word div {
+    display: block;
+    width: 50px;
+    height: 65px;
+    margin: 2px;
+    border: 2px solid black;
+    float: left;
+    line-height: 65px;
+    font-size: 40px;
+    border-color: black;
+
+}
+#letter_board div.space {
+    display: inline-block;
+    width: 50px;
+    height: 65px;
+    margin: 2px;
+    border: 2px ;
+    line-height: 65px;
+}
+.clear {
+    clear: both;
+}
