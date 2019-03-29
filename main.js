@@ -10,7 +10,11 @@ var scoreboard = {
       this.pl /= 2;
     }//solve incorrectly
     else {
-      this.pl += score;  
+      this.pl += score;
+    }
+
+    if (this.pl < 0)  {
+      this.pl = 0;
     }
   }//'pl' specifies which property gets changed, 'score' specifies by how much. + or -
 }
@@ -40,39 +44,46 @@ function letter(char) {
 $('spin_button').click(function() {
   //showWheel();
   //var spinValue = spinWheel(); -ideally returns spinvalue
-  //              
+  //
   //if (guessCons();) {
   //  scoreboard.changeScore(p1, spinValue);
-  //  
+  //
   //}
   //else {
   //  disable vowel and solve buttons
-  // }
-  //pass button
+  //}
+  //pass_button enabled
+  //  change class of button to disable repeated clicking
 }
 //this function should be called when the wheel has spun and given its value
 function guessCons() {
-  var guess = prompt('enter a consonant');
+  var guess = prompt('pick a consonant');
   if (letter(guess)=='consonant') {
     //check to see if the solution contains guess
     if (/*solution contains guess*/) {
       return true;
-         }
+    }
          else {
            return false;
          }
-       }
-      
-      
+  }
+
+
 //VOWEL
-$('#vowel_button').click(function() { 
-  //scoreboard.changeScore(p1,
+$('#vowel_button').click(function() {
+  //scoreboard.changeScore(p1, vowelValue); //should be negative
   //if (guessVow()==false) {
-  //  
-  //
-}
+  //  disable solve_button
+  //}
+  //else {
+  //  scoreboard.changeScore(p1, vowelValue * (guessVow() - 1));
+  //  populate letterboard
+  //}
+  //pass_button enabled
+  //change class of button to disable repeated clicking
+});
 function guessVow() {
-  var guess = prompt('enter a vowel');
+  var guess = prompt('buy a vowel');
   if (letter(guess)=='vowel') {
     if (/*solution contains guess*/) {
       //populate letterboard
@@ -88,7 +99,24 @@ function guessVow() {
 }
 
 //SOLVE
-$('#solve_button').click(function(e){
+$('#solve_button').click(function(){
 
-  //check guess
+  //if (guessSolu()) {
+  //  you win function
+  //}
+  //else {
+  //  scoreboard.changeScore(p1, -2);
+  //  disable other buttons
+  //}
+  //pass_button enabled
 });
+
+function guessSolu() {
+  var solve = prompt('guess the answer');
+  if (solve == /* solution */) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
