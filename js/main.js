@@ -235,6 +235,7 @@ $('document').ready(function() {
       alert('your score' + scoreboard.player_score[0]);
     }
     updateScores();
+    alert('your score' + scoreboard.player_score[0]);
   //pass_button enabled
   //change class of button to disable repeated clicking
   });
@@ -250,7 +251,7 @@ $('document').ready(function() {
     //  disable other buttons
     }
     else {
-      //youWin();
+      victory();
       //start new game
       gameStart();
     }
