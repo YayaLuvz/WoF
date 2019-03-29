@@ -24,8 +24,9 @@ var solutions = {
   fantasyBooks: ["The Lightning Thief", "The Sorcerer's Stone", "The Alchemyst"]
 };
 
-function letter(char) {
-    // var lett = prompt('Enter a Letter');
+var letters = [];
+
+function letterType( char) {
     char = char.toUpperCase();
 
     switch(char) {
@@ -39,6 +40,9 @@ function letter(char) {
       default:
         return 'consonant';
     }
+}
+function toggleWheel() {
+
 }
 
 //SPIN
@@ -59,7 +63,7 @@ $('spin_button').click(function() {
 //this function should be called when the wheel has spun and given its value
 function guessCons() {
   var guess = prompt('pick a consonant');
-  if (letter(guess)=='consonant') {
+  if (letterType(guess)=='consonant') {
     //check to see if the solution contains guess
     //if (/*solution contains guess*/) {
     //  return true;
@@ -86,7 +90,7 @@ $('#vowel_button').click(function() {
 
 function guessVow() {
   var guess = prompt('buy a vowel');
-  if (letter(guess)=='vowel') {
+  if (letterType(guess)=='vowel') {
     // if (/*solution contains guess*/) {
     //   //populate letterboard
     //   //get number of instances of guess in solution
@@ -128,33 +132,42 @@ function div(parent, className) {
   parent.appendChild(r);
   return r;
 }
-//function lettersxboard() {
 
-  var solution = 'solution solute';
+var solution = 'solution solute';
 
-  function lettersboard() {
-    var letter_board = document.getElementById('letter_board'), letters;
-    letters = [];
-    while (letter_board.hasChildNodes()) {
-      letter_board.removeChild(letter_board.firstChild);
-    }
+function lettersboard() {
+  var letter_board = document.getElementById('letter_board');
 
-    var word = div(letter_board, 'word');
-    for (var i = 0; i < solution.length; ++i) {
-      if (solution[i] == ' ') {
-        letters.push(div(letter_board, 'space'));
-        word = div(letter_board, 'word');
-      } else {
-        letters.push(div(word, 'letter'));
-      }
-      console.log(i, solution[i], word.children, letters.length);
-    }
-    //div(letter_board, 'clear');
-    // for (var i = 0; i < solution.length; ++i) {
-    //   letters[i].innerHTML = solution[i];
-    // }
+  while (letter_board.hasChildNodes()) {
+    letter_board.removeChild(letter_board.firstChild);
   }
 
+  var word = div(letter_board, 'word');
+  for (var i = 0; i < solution.length; ++i) {
+    if (solution[i] == ' ') {
+      letters.push(div(letter_board, 'space'));
+      word = div(letter_board, 'word');
+    } else {
+      letters.push(div(word, 'letter'));
+    }
+    console.log(i, solution[i], word.children, letters.length);
+  }
+  div(letter_board, 'clear');
+  // for (var i = 0; i < solution.length; ++i) {
+  //   letters[i].innerHTML = solution[i];
+  // }
+}
+
+function showLetter(str, letter) {
+  var indices = [];
+  for(var i = 0; i < str.length; i++) {
+    if (str[i] === letter){
+      indices.push(i);
+      letters[i].innerHTML = str[i];
+    }
+    console.log(indices);
+  }
+}//gets the solution string and displays it in the boxes
 
 
 
@@ -169,3 +182,5 @@ function chooseSolu() {
 
   //}
 }//should be called when the game ends
+
+//PASS
