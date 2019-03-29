@@ -1,5 +1,5 @@
 var scoreboard = {
-  player_score : [5000, 0, 0],
+  player_score : [0, 0, 0],
 
   changeScore(pl, score) {
     if (score == 12) {
@@ -25,7 +25,7 @@ var solutions = {
   coolCharacters: ["LUCINA", "PROFESSOR OAK", "ONE PUNCH MAN"]
 }, solution;
 
-
+var category, categoryIndex = 1;
 var letters = [], vowelValue = -250, vowelCount = 0;
 
 function letterType(char) {
@@ -56,6 +56,31 @@ function prize() {
   var pr = 300/*parseInt(indicatedSegment)*/;
   return pr;
 }
+//GAME START
+function gameStart() {
+  chooseSolu(categoryIndex);
+  for (i in scoreboard.player_score) {
+    scoreboard.player_score[i] = 0;
+  }
+  alert(solution);
+  // if (categoryIndex == solutions.length()) {
+  //   categoryIndex = 1;
+  // }
+  // else {
+  //   categoryIndex++;
+  // }
+
+  lettersboard(solution);
+
+}
+$('document').ready(function() {
+  $(document).one("click", function() {
+    gameStart();
+  });
+  $('.player-score > p').append(scoreboard.player_score[0]);
+  $('#oppo_1 > p').append(scoreboard.player_score[1]);
+  $('#oppo_2 > p').append(scoreboard.player_score[2]);
+});
 //SPIN
 $("document").ready(function() {
   $('#spin_button').click(function() {
@@ -113,12 +138,14 @@ $('document').ready(function() {
   //change class of button to disable repeated clicking
   });
 });
+
 function guessVow() {
-  var guess = prompt('buy a vowel').toUpperCase();
-  while (letterType(guess)!='vowel') {
-    alert('Not a vowel. try again');
-    guess = prompt('buy a vowel').toUpperCase();
-  }
+  do {
+    var guess = prompt('buy a vowel').toUpperCase();
+    if (letterType(guess) != 'vowel') {
+      alert('Not a vowel. try again');
+    }
+  }while(letterType(guess) != 'vowel');
 
   if (searchSolu(solution, guess)) {
     vowelCount = 0;
@@ -131,7 +158,7 @@ function guessVow() {
 
 //SOLVE
 $('document').ready(function() {
-  var category = 1;
+
   $('#solve_button').click(function(){
 
     // if (guessSolu()) {
@@ -145,11 +172,8 @@ $('document').ready(function() {
     }
     else {
       //youWin();
-      //change category
-      if (category = solutions.length) {
-        category = 0;
-      }
-      chooseSolu(category++);
+      //start new game
+      gameStart();
     }
     //pass_button enabled
     //change class of button to disable repeated clicking
@@ -157,6 +181,10 @@ $('document').ready(function() {
 
   });
 });
+
+function victory() {
+  alert('you win');
+}
 
 function guessSolu() {
   var solve = prompt('guess the answer');
@@ -202,7 +230,7 @@ function lettersboard(str) {
     }
     console.log(i, str[i], word.children, letters.length);
   }
-  div(letter_board, 'clear');
+  $('#letter_board').addClass('clear');
   // for (var i = 0; i < solution.length; ++i) {
   //   letters[i].innerHTML = solution[i];
   // }
