@@ -10,31 +10,35 @@
 
   <body>
     <div id='game'>
-      <img src="imgs/blankboard.png" alt="The game board" class="center">
+      <p><img src="http://www.wheeloffortune.com/Content/Img/Images/global/header/wheel_share.jpg" alt="Wheel of Fortune Icon" width="100" align="middle">Guess the phrases before your opponents to win!</p>
 
-      <div id= 'profile'>
-        <div class= 'opponent-score' id= 'oppo_1'style="flex-grow: 1">
-          <i class="fa fa-heart fa-5x you-circle-icon"></i>
-          <p>Your Score:</p><!--object property with name and score--></div>
-
-        <div class= 'opponent-score' id= 'oppo_2'><!--  --></div>
-
-        <div class= 'player-score'><!----> </div>
-      </div>
-
-      <div class= 'game-play'>
-        <div id= 'board'>
-          <div id= 'letters'><div>
+      <div id="wrapper">
+        <div class="flex-item1">
+          <div id= 'board'>
+            <img src="imgs/blankboard.png" alt="The game board" class="center" width="850">
+              <div id= 'letter_board'></div>
+            <img src="imgs/clue-banner.png" alt="Banner for the clues" class="banner-clue" id='clue' width="675">
+            <div class="banner-text">[Insert Your Clue Here]</div>
+          </div>
         </div>
-        <div id='clue'></div>
+        <div class="flex-item0">
+        </div>
+        <div class="flex-item2">
+          <div id='profile'>
+            <div class= 'player-score'><p><i class="fa fa-heart fa-3x you-circle-icon" align="middle"></i>Your Score:</p><!--object property with name and score--> </div>
+
+            <div class= 'opponent-score' id= 'oppo_1'><p><i class='fas fa-apple-alt fa-2x op1-circle-icon' align="middle"></i>Opponent</p></div>
+
+            <div class= 'opponent-score' id= 'oppo_2'><p><i class='fas fa-bacon fa-2x op2-circle-icon' align="middle"></i>Opponent</p><!--  --></div>
+          </div>
+        </div>
+      </div>
+        <br><br><br>
         <div id='button-list'>
-          <ul>
-            <li><button class= 'play-button' ></button></li>
-            <li><button class= 'play-button' ></button></li>
-            <li><button class= 'play-button' ></button></li>
-          </ul>
+          <button type="button" class= 'play-button' onclick="alert('Pay $250 for every revealed vowel. If there are none of your selected vowel, you lose $250.')">Buy a Vowel</button>
+          <button type="button" class= 'play-button' onclick="alert('Hello world!')">Spin</button>
+          <button type="button" class= 'play-button' onclick="alert('Do you know the answer?')">Solve!</button>
         </div>
-      </div>
     </div>
   </body>
 </html>
