@@ -178,7 +178,6 @@ function gameStart() {
   for (i in scoreboard.player_score) {
     scoreboard.player_score[i] = 0;
   }
-  alert(solution);
   // if (categoryIndex == solutions.length()) {
   //   categoryIndex = 1;
   // }
