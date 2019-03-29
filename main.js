@@ -43,7 +43,7 @@ $('spin_button').click(function() {
   //              
   //if (guessCons();) {
   //  scoreboard.changeScore(p1, spinValue);
-  //  populate letterboard
+  //  
   //}
   //else {
   //  disable vowel and solve buttons
@@ -57,23 +57,27 @@ function guessCons() {
     //check to see if the solution contains guess
     if (/*solution contains guess*/) {
       return true;
-    }
-    else {
-      return false;
-    }
-  }
-}
+         }
+         else {
+           return false;
+         }
+       }
+      
+      
 //VOWEL
-$('#vowel_button').click(function() {
-  //guessVow();
+$('#vowel_button').click(function() { 
+  //scoreboard.changeScore(p1,
+  //if (guessVow()==false) {
+  //  
   //
 }
 function guessVow() {
   var guess = prompt('enter a vowel');
   if (letter(guess)=='vowel') {
-    //check to see if the solution contains guess
     if (/*solution contains guess*/) {
-      return true;
+      //populate letterboard
+      //get number of instances of guess in solution
+      return true /*number of instances of guess in solution */;
     }
     else {
       return false;
