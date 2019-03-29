@@ -26,8 +26,8 @@ var solutions = {
 }, solution;
 
 var category, categoryIndex = 1;
-var letters = [], vowelValue = -250, vowelCount = 0;
-
+var letters = [], vowelValue = -250, letterCount = 0;
+var wheelAr = [2500, 300, 250, 150, 250, 400, 250, 200, 150, 450, 250, 150, 450, 0, 600, 400, 300, -12, 800, 350, 450, 700, 300, 600];
 function letterType(char) {
     char = char.toUpperCase();
 
@@ -50,58 +50,25 @@ function toggleWheel() {
 
 function spinWheel() {
   //startSpin();
-  return prize();
+  var spin = Math.floor(Math.random() * wheelAr.length) + 0;
+  return prize(spin);
 }
-function prize() {
-  var pr = 300/*parseInt(indicatedSegment)*/;
-  return pr;
+function prize(x) {
+  return wheelAr[x];
 }
 //GAME START
-function gameStart() {
-  chooseSolu(categoryIndex);
-  for (i in scoreboard.player_score) {
-    scoreboard.player_score[i] = 0;
-  }
-  alert(solution);
-  // if (categoryIndex == solutions.length()) {
-  //   categoryIndex = 1;
-  // }
-  // else {
-  //   categoryIndex++;
-  // }
 
-  lettersboard(solution);
+function turnStart() {
 
 }
-$('document').ready(function() {
-  $(document).one("click", function() {
-    gameStart();
-  });
-  $('.player-score > p').append(scoreboard.player_score[0]);
-  $('#oppo_1 > p').append(scoreboard.player_score[1]);
-  $('#oppo_2 > p').append(scoreboard.player_score[2]);
-});
-//SPIN
-$("document").ready(function() {
-  $('#spin_button').click(function() {
-    toggleWheel();
-    var spinValue = spinWheel();
-    alert('spinning for ' + spinValue);
-    var cons = guessCons();
-    console.log(cons);
-    if (cons == true) {
-      scoreboard.changeScore(0, spinValue);
-      console.log(scoreboard.player_score[0]);
-    } else {
-    //  disable vowel and solve buttons
-      alert('sorry, bad guess');
-    }
-    toggleWheel();
-    //pass_button enabled
-    //  change class of button to disable repeated clicking
-  });
-});
 
+function updateScores() {
+  document.getElementById('pla').innerHTML('Your Score: ' + scoreboard.player_score[0]);
+  document.getElementById('opo1').innerHTML('Opponent: ' + scoreboard.player_score[1]);
+  document.getElementById('opo2').innerHTML('Opponent: ' + scoreboard.player_score[2]);
+
+}
+//SPIN
 //this function should be called when the wheel has spun and given its value
 function guessCons() {
   var guess = prompt('pick a consonant').toUpperCase();
@@ -113,32 +80,15 @@ function guessCons() {
   if (letterType(guess)!='vowel') {
     //check to see if the solution contains guess
     if (searchSolu(solution, guess)) {
+      letterCount = 0;
       showLetter(solution, guess);
-      return true;
+      return letterCount;
     } else {
       return false;
     }
   }
 }
-//VOWEL
-$('document').ready(function() {
-  $('#vowel_button').click(function() {
-    scoreboard.changeScore(0, vowelValue); //should be negative
-    alert('your score' + scoreboard.player_score[0]);
-    vowel = guessVow();
-    if (vowel == false) {
-      // disable solve
-    }
-    else {
-      scoreboard.changeScore(0, (vowelValue * (vowel - 1)));
-      alert('your score' + scoreboard.player_score[0]);
-    }
-
-  //pass_button enabled
-  //change class of button to disable repeated clicking
-  });
-});
-
+//vowel
 function guessVow() {
   do {
     var guess = prompt('buy a vowel').toUpperCase();
@@ -148,40 +98,15 @@ function guessVow() {
   }while(letterType(guess) != 'vowel');
 
   if (searchSolu(solution, guess)) {
-    vowelCount = 0;
+    letterCount = 0;
     showLetter(solution, guess);
-    return vowelCount;
+    return letterCount;
   } else {
     return false;
   }
 }
 
-//SOLVE
-$('document').ready(function() {
-
-  $('#solve_button').click(function(){
-
-    // if (guessSolu()) {
-    // //  you_win()
-    // }
-    // else
-    if (guessSolu() == false){
-      scoreboard.changeScore(0, -2);
-      alert('your score: '+ scoreboard.player_score[0]);
-    //  disable other buttons
-    }
-    else {
-      //youWin();
-      //start new game
-      gameStart();
-    }
-    //pass_button enabled
-    //change class of button to disable repeated clicking
-
-
-  });
-});
-
+//solve
 function victory() {
   alert('you win');
 }
@@ -240,16 +165,29 @@ function showLetter(str, letter) {
   var indices = [];
   for(var i = 0; i < str.length; i++) {
     if (str[i] === letter){
-      if (letterType(letter) == 'vowel') {
-        vowelCount++;
-      }
+      letterCount++;
+
       indices.push(i);
       letters[i].innerHTML = str[i];
     }
     console.log(indices);
   }
 }//gets the solution string and displays it in the boxes
+function gameStart() {
+  chooseSolu(categoryIndex);
+  for (i in scoreboard.player_score) {
+    scoreboard.player_score[i] = 0;
+  }
+  alert(solution);
+  // if (categoryIndex == solutions.length()) {
+  //   categoryIndex = 1;
+  // }
+  // else {
+  //   categoryIndex++;
+  // }
 
+  lettersboard(solution);
+}
 //takes an int as parameter to choose the solution category
 function chooseSolu(cdex) {
   //cycle through object property array of solutions
@@ -263,4 +201,65 @@ function chooseSolu(cdex) {
   solution = solutions[category][solutions['currentIndex']++];
 }//should be called when the game ends
 
+$('document').ready(function() {
+  $(document).one("click", function() {
+    gameStart();
+  });
+
+  $('#spin_button').click(function() {
+    //toggleWheel();
+    var spinValue = spinWheel();
+    alert('spinning for ' + spinValue);
+    var cons = guessCons();
+    console.log(cons);
+    if (cons != false) {
+      scoreboard.changeScore(0, (spinValue * cons));
+      console.log(scoreboard.player_score[0]);
+    } else {
+    //  disable vowel and solve buttons
+      alert('sorry, bad guess');
+    }
+    //toggleWheel();
+    updateScores();
+    //pass_button enabled
+    //  change class of button to disable repeated clicking
+  });
+  $('#vowel_button').click(function() {
+    scoreboard.changeScore(0, vowelValue); //should be negative
+    alert('your score' + scoreboard.player_score[0]);
+    vowel = guessVow();
+    if (vowel == false) {
+      // disable solve
+    }
+    else {
+      scoreboard.changeScore(0, (vowelValue * (vowel - 1)));
+      alert('your score' + scoreboard.player_score[0]);
+    }
+    updateScores();
+  //pass_button enabled
+  //change class of button to disable repeated clicking
+  });
+  $('#solve_button').click(function(){
+
+    // if (guessSolu()) {
+    // //  you_win()
+    // }
+    // else
+    if (guessSolu() == false){
+      scoreboard.changeScore(0, -2);
+      alert('your score: '+ scoreboard.player_score[0]);
+    //  disable other buttons
+    }
+    else {
+      //youWin();
+      //start new game
+      gameStart();
+    }
+    //pass_button enabled
+    //change class of button to disable repeated clicking
+
+
+  });
+
+});
 //PASS
